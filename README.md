@@ -1,6 +1,6 @@
 # class-145
 
-flow chart solutions:
+flow chart solutions: flow-chart branch
 
 Java examples:
 
