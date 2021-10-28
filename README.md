@@ -1,8 +1,8 @@
 # class-145
 
-flow chart solutions:
+flow chart solutions: origin
 
-Java examples:
+Java examples: java-pojo
 
 spring boot examples:
 
