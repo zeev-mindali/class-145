@@ -1,4 +1,4 @@
-package class1_hw;
+package class1_2610.class1_2160_if.class1_hw;
 
 import java.util.Scanner;
 

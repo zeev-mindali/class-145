@@ -1,4 +1,4 @@
-package class1_hw;
+package class1_2610.class1_2160_if.class1_hw;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class class1_hw1 {
         int id;
         int height;
         //char maleFemale='U';
-        boolean isTal = false;
+        boolean isTal;
 
         Scanner input = new Scanner(System.in);
 
