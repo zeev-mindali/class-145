@@ -12,11 +12,12 @@ public class Targil3 {
         lowNum = input.nextInt();
         highNum = input.nextInt();
         for (int counter = lowNum; counter <= highNum; counter++) {
-            if (counter % BOOM_NUMBER == 0 || isContainsSeven(counter)) {
+            if (counter % BOOM_NUMBER == 0 || isContainsSeven(counter, BOOM_NUMBER)) {
                 System.out.println("Boom!!!");
             } else {
                 System.out.println(counter);
             }
+
         }
     }
 
