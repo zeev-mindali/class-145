@@ -7,7 +7,7 @@ public class MyStringBufferTester {
         myStory += "I live in qiryat yam";
         myStory += "I work in JohnBryce/Dronix/Amm Security";
 
-
+        //test
         StringBuffer sb = new StringBuffer();
         sb.append("My name is zeev\n");
         sb.append("I live in qiryat yam\n");
