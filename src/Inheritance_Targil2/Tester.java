@@ -21,6 +21,10 @@ public class Tester {
         Programmer talBait = new Programmer(userName,userId,userSalary);
         */
 
+        //if Employee is abstract class, we can not create instance of it....
+        //Employee anna = new Employee("Anna",1010,45000f);
+
+
         Programmer tomer = new Programmer("Tomer", 1002, 17000f);
         Programmer talKita = new Programmer("Tal Rozner", 1003, 12000f);
 

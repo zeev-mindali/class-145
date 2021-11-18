@@ -18,13 +18,6 @@ public class Secretary extends Employee {
     }
 
     @Override
-    protected float calcBouns() {
-        //this.salary=this.salary+this.bouns;
-        updateSalary(this.salary + this.bouns);
-        return salary;
-    }
-
-    @Override
     public String toString() {
         return "Secretary{" +
                 "name='" + name + '\'' +
@@ -32,5 +25,11 @@ public class Secretary extends Employee {
                 ", salary=" + salary +
                 ", numberOfWords=" + numberOfWords +
                 '}';
+    }
+
+    @Override
+    protected float calcBouns() {
+        updateSalary(this.salary + this.bouns);
+        return salary;
     }
 }

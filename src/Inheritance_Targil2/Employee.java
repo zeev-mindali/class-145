@@ -1,6 +1,6 @@
 package Inheritance_Targil2;
 
-public class Employee {
+public abstract class Employee {
     protected String name;
     protected int employeeID;
     protected float salary;
@@ -54,11 +54,7 @@ public class Employee {
                 '}';
     }
 
-    protected float calcBouns() {
-        //todo: write the code for calcBouns function (method)
-
-        return bouns;
-    }
+    protected abstract float calcBouns();
 
     protected void updateSalary(float newSalary) {
         this.salary = newSalary;
