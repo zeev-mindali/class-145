@@ -2,6 +2,9 @@ package Inheritance_Targil2;
 
 public class Tester {
     public static void main(String[] args) {
+        final float programmerSalary = 17000f;
+        final float secretarySalary = 7000f;
+
         Programmer tomer = new Programmer("Tomer", 1002, 17000f);
         Programmer talKita = new Programmer("Tal Rozner", 1003, 12000f);
 
