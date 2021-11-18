@@ -3,8 +3,8 @@ package class6_1811;
 public class Secretary extends Employee {
     protected int numberOfWords;
 
-    protected Secretary(String name, int employeeID, float salary, int numberOfWords) {
-        super(name, employeeID, salary);
+    protected Secretary(String name, float salary, int numberOfWords) {
+        super(name, salary);
         setBouns(500);
         this.setNumberOfWords(numberOfWords);
     }

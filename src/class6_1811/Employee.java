@@ -5,11 +5,14 @@ public abstract class Employee {
     protected int employeeID;
     protected float salary;
     protected float bouns = 0;
+    private static int employeeCounter = 1000;
 
-    protected Employee(String name, int employeeID, float salary) {
+    protected Employee(String name, float salary) {
         setName(name);
         updateSalary(salary);
         setEmployeeID(employeeID);
+        //employeeCounter+=1;
+        setEmployeeID(++employeeCounter);
     }
 
     public void setSalary(float salary) {
@@ -60,14 +63,5 @@ public abstract class Employee {
         this.salary = newSalary;
     }
 
-    protected String showBanner() {
-        return "" +
-                ".______     ______    __    __  .__   __.      _______.\n" +
-                "|   _  \\   /  __  \\  |  |  |  | |  \\ |  |     /       |\n" +
-                "|  |_)  | |  |  |  | |  |  |  | |   \\|  |    |   (----`\n" +
-                "|   _  <  |  |  |  | |  |  |  | |  . `  |     \\   \\    \n" +
-                "|  |_)  | |  `--'  | |  `--'  | |  |\\   | .----)   |   \n" +
-                "|______/   \\______/   \\______/  |__| \\__| |_______/    \n" +
-                "                                                       ";
-    }
+
 }

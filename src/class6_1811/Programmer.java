@@ -4,8 +4,8 @@ public class Programmer extends Employee {
     //we have it on base class
     //private float bonus=1.5f;
 
-    protected Programmer(String name, int employeeID, float salary) {
-        super(name, employeeID, salary);
+    protected Programmer(String name, float salary) {
+        super(name, salary);
         setBouns(1.5f);
     }
 
@@ -24,4 +24,6 @@ public class Programmer extends Employee {
                 ", salary=" + salary +
                 '}';
     }
+
+
 }
