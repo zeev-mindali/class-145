@@ -26,8 +26,60 @@ public class Exam_Flow {
         System.out.println(findLowestNumber(array2, 4));
 
         //find all unique number in array (distinct) in both arrays
-
+        int[] display = findUnique(array1, array2);
+        print(display);
         //print array with all distinct number as small as possible
+    }
+
+    private static int[] findUnique(int[] arr1, int[] arr2) {
+        int uniqueCounter = 0;
+        boolean foundNumber;
+        int[] tempArray = new int[arr1.length];
+
+        for (int counter = 0; counter < arr1.length; counter++) {
+            foundNumber = false;
+            for (int item : arr2) {
+                if (item == arr1[counter]) {
+                    foundNumber = true;
+                    break;
+                }
+            }
+            if (!foundNumber) {
+                if (!checkArray(tempArray, arr1[counter])) {
+                    tempArray[uniqueCounter++] = arr1[counter];
+                }
+            }
+        }
+
+        for (int counter = 0; counter < arr2.length; counter++) {
+            foundNumber = false;
+            for (int item : arr1) {
+                if (item == arr2[counter]) {
+                    foundNumber = true;
+                    break;
+                }
+            }
+            if (!foundNumber) {
+                if (!checkArray(tempArray, arr2[counter])) {
+                    tempArray[uniqueCounter++] = arr2[counter];
+                }
+            }
+        }
+
+        int[] returnArray = new int[uniqueCounter];
+        for (int counter = 0; counter < returnArray.length; counter++) {
+            returnArray[counter] = tempArray[counter];
+        }
+        return returnArray;
+    }
+
+    private static boolean checkArray(int[] arr, int number) {
+        for (int item : arr) {
+            if (item == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static int findLowestNumber(int[] arr, int size) {
@@ -66,7 +118,7 @@ public class Exam_Flow {
 
     private static void print(int[] array) {
         for (int item : array) {
-            System.out.print(item + ",");
+            System.out.print(item + " ");
         }
         System.out.println();
     }
