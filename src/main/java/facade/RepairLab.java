@@ -2,10 +2,7 @@ package facade;
 
 import beans.Repair;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class RepairLab {
     private Scanner input = new Scanner(System.in);
@@ -53,11 +50,19 @@ public class RepairLab {
     private void deleteRepair() {
         System.out.println("Please enter a S/N to delete");
         String sn = input.nextLine();
+        deleteRepairBySN(sn);
+    }
+
+    public void deleteRepairBySN(String sn){
         for (Repair item:repairs){
             if (item.getSn().equals(sn)){
                 repairs.remove(item);
             }
         }
+    }
+
+    public List<Repair> getRepairs(){
+        return this.repairs;
     }
 
     private void showRepairs() {

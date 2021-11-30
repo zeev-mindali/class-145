@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 public class Tester {
     public static void main(String[] args) {
-       new RepairLab();
+       RepairLab myLab = new RepairLab();
+       myLab.deleteRepairBySN("123456");
     }
 }
