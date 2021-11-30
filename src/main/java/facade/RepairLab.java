@@ -88,6 +88,9 @@ public class RepairLab {
         */
     }
 
+    public void addNewRepair(Repair repair){
+        repairs.add(repair);
+    }
     private void handleNewRepair() {
         System.out.println("Create new repair\n===================");
         //enter date time for ready on (eta fix)
