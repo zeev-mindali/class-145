@@ -17,6 +17,7 @@ public class Repair {
     private boolean isImportent; //VIP person, tal edri
     private boolean poped; //show message when the drone is ready.
     private String repairPerson;
+    private boolean isReady;
 
     private void setEntred(Calendar entred) {
         this.entred = entred;
