@@ -33,23 +33,36 @@ public class Tester {
         var tester = new Tester();
         var xmlData = tester.getURLData(tester.urlXML);
         //xml - bank of israel
-//        List<Currency> currencies = tester.readXML(xmlData);
-//        for (Currency item:currencies){
-//            System.out.println(item);
-//        }
-//        currencies.forEach(item -> System.out.println(item));
-//        currencies.forEach(System.out::println);
+        List<Currency> currencies = tester.readXML(xmlData);
+        //for (Currency item : currencies) {
+        //    System.out.println(item);
+        //}
+        //currencies.forEach(item -> System.out.println(item));
+        //currencies.forEach(System.out::println);
+
+        //Intro for functional programing :)
+        for (Currency item:currencies){
+            if (item.getChange()>0){
+                System.out.println(item);
+            }
+        }
+        System.out.println("===============================================================================================");
+
+        currencies.stream()
+                .filter(item -> item.getChange()>0)
+                .filter(item -> item.getName().equals("USD"))
+                .forEach(System.out::println);
 
         //json - ministry of transportation
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please enter a car number:");
-        var carNumber = input.nextLine();
-        String jsonObject = tester.getURLData(tester.urlJSON+carNumber);
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("Please enter a car number:");
+//        var carNumber = input.nextLine();
+//        String jsonObject = tester.getURLData(tester.urlJSON+carNumber);
         //System.out.println(jsonObject);
 
         //to show json so we can read it
         //http://json.parser.online.fr/
-        Car car = readJSON(jsonObject);
+        //Car car = readJSON(jsonObject);
 
         //itzik kaknua - 2209179
     }
@@ -67,7 +80,7 @@ public class Tester {
 
         System.out.println("mispar rechev: " + singleCar.getInt("mispar_rechev"));
         System.out.println("manufactor: " + singleCar.getString("tozeret_nm"));
-        System.out.println("model: " + singleCar.getString("kinuy_mishari")+" "+singleCar.getString("ramat_gimur"));
+        System.out.println("model: " + singleCar.getString("kinuy_mishari") + " " + singleCar.getString("ramat_gimur"));
         System.out.println("test: " + singleCar.getString("tokef_dt").split("T")[0]);
         System.out.println("year: " + singleCar.getInt("shnat_yitzur"));
         System.out.println("Color: " + singleCar.getString("tzeva_rechev"));
