@@ -50,6 +50,8 @@ public class Tester {
         //to show json so we can read it
         //http://json.parser.online.fr/
         Car car = readJSON(jsonObject);
+
+        //itzik kaknua - 2209179
     }
 
     private static Car readJSON(String jsonObject) {
