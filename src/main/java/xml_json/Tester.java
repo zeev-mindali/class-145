@@ -1,6 +1,8 @@
 package xml_json;
 
 
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -18,22 +20,59 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 public class Tester {
     //url of bank of israel for getting currencies data
     public final String urlXML = "https://www.boi.org.il/currency.xml";
     //url to get a car data
-    public final String urlJSON = "https://data.gov.il/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3&q=1113334";
+    public final String urlJSON = "https://data.gov.il/api/3/action/datastore_search?resource_id=053cea08-09bc-40ec-8f7a-156f0677aff3&q=";
 
     public static void main(String[] args) {
         var tester = new Tester();
         var xmlData = tester.getURLData(tester.urlXML);
-        List<Currency> currencies = tester.readXML(xmlData);
+        //xml - bank of israel
+//        List<Currency> currencies = tester.readXML(xmlData);
 //        for (Currency item:currencies){
 //            System.out.println(item);
 //        }
 //        currencies.forEach(item -> System.out.println(item));
-        currencies.forEach(System.out::println);
+//        currencies.forEach(System.out::println);
+
+        //json - ministry of transportation
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter a car number:");
+        var carNumber = input.nextLine();
+        String jsonObject = tester.getURLData(tester.urlJSON+carNumber);
+        //System.out.println(jsonObject);
+
+        //to show json so we can read it
+        //http://json.parser.online.fr/
+        Car car = readJSON(jsonObject);
+    }
+
+    private static Car readJSON(String jsonObject) {
+
+        //convert our String to json object
+        var carData = new JSONObject(jsonObject);
+        //getting our result from json object
+        var result = carData.getJSONObject("result");
+        //get json array from result
+        var carArray = result.getJSONArray("records");
+        //get the first car from json array
+        var singleCar = (JSONObject) carArray.get(0);
+
+        System.out.println("mispar rechev: " + singleCar.getInt("mispar_rechev"));
+        System.out.println("manufactor: " + singleCar.getString("tozeret_nm"));
+        System.out.println("model: " + singleCar.getString("kinuy_mishari")+" "+singleCar.getString("ramat_gimur"));
+        System.out.println("test: " + singleCar.getString("tokef_dt").split("T")[0]);
+        System.out.println("year: " + singleCar.getInt("shnat_yitzur"));
+        System.out.println("Color: " + singleCar.getString("tzeva_rechev"));
+
+
+        return null;
+
     }
 
     public List<Currency> readXML(String xmlData) {
