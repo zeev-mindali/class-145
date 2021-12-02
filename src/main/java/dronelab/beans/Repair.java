@@ -1,4 +1,4 @@
-package beans;
+package dronelab.beans;
 
 import lombok.*;
 

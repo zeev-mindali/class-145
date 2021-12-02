@@ -1,7 +1,6 @@
-import beans.Repair;
-import facade.RepairLab;
+package dronelab;
 
-import java.util.Calendar;
+import dronelab.facade.RepairLab;
 
 public class Tester {
     public static void main(String[] args) {

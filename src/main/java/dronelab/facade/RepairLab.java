@@ -1,6 +1,6 @@
-package facade;
+package dronelab.facade;
 
-import beans.Repair;
+import dronelab.beans.Repair;
 
 import java.util.*;
 
