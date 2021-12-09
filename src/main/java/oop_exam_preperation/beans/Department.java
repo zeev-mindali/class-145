@@ -1,5 +1,7 @@
 package oop_exam_preperation.beans;
 
+import java.util.Arrays;
+
 public class Department {
     private DepNames name;
     private Manager manager;
@@ -33,5 +35,14 @@ public class Department {
 
     public void setEmployee(Employee[] employee) {
         this.employee = employee;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "name=" + name +
+                ", manager=" + manager +
+                ", employee=" + Arrays.toString(employee) +
+                '}';
     }
 }
