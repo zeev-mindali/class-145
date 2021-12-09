@@ -11,7 +11,11 @@ public class Employee extends Person{
         checkSalary();
     }
 
-
+    public Employee(Employee other){
+        super (other.name, other.age);
+        this.salary = other.getSalary();
+        checkSalary();
+    }
 
     public Employee() {
         super();
@@ -39,6 +43,6 @@ public class Employee extends Person{
                 "salary=" + salary +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                '}';
+                "}\n";
     }
 }

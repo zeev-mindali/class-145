@@ -13,6 +13,14 @@ public class Department {
         this.employee = employee;
     }
 
+    public Department(DepNames depName) {
+        this.name=depName;
+        this.manager = new Manager(new Employee());
+        for (int counter=0;counter< employee.length;counter++){
+            employee[counter] = new Employee();
+        }
+    }
+
     public DepNames getName() {
         return name;
     }
@@ -41,8 +49,8 @@ public class Department {
     public String toString() {
         return "Department{" +
                 "name=" + name +
-                ", manager=" + manager +
-                ", employee=" + Arrays.toString(employee) +
+                "\n, manager=" + manager +
+                "\n, employee=" + Arrays.toString(employee) +
                 '}';
     }
 }

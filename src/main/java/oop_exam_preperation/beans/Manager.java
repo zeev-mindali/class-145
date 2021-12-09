@@ -7,6 +7,10 @@ public class Manager extends Employee{
         super(name, age, salary);
     }
 
+    public Manager(Employee employee){
+        super(employee);
+    }
+
 
     @Override
     public String toString() {
@@ -14,6 +18,6 @@ public class Manager extends Employee{
                 "salary=" + salary +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                '}';
+                "}\n";
     }
 }
