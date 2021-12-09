@@ -16,10 +16,16 @@ public class Tester {
         //System.out.println(department);
 
         CompanyStatistics company = new CompanyStatistics();
-        Department[] dep = company.getDepartment();
+        /*
+        Department[] dep = company.getDepartment(); //memory address !!!!!!!
         for (int counter=0;counter<dep.length;counter++){
             System.out.println(dep[counter]);
         }
-
+        */
+        System.out.println("Company avarge salary: "+company.getCompanyAvgSalary());
+        System.out.println("--------------------------------------------------------");
+        company.getCompanyAvgByDep();
+        System.out.println("--------------------------------------------------------");
+        company.getCompanyAvgBonusByDep();
     }
 }

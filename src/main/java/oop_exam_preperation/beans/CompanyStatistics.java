@@ -18,4 +18,24 @@ public class CompanyStatistics {
     public void setDepartment(Department[] department) {
         this.department = department;
     }
+
+    public double getCompanyAvgSalary(){
+        double returnResult=0;
+        for (Department item:department){
+            returnResult+=item.getDepartmentAvgSalary();
+        }
+        return returnResult/department.length;
+    }
+
+    public void getCompanyAvgByDep(){
+        for (Department item:department){
+            System.out.println(item.getName()+" : "+item.getDepartmentAvgSalary());
+        }
+    }
+
+    public void getCompanyAvgBonusByDep(){
+        for (Department item:department){
+            System.out.println(item.getName()+" : "+item.getDepartmentAvgBonus());
+        }
+    }
 }

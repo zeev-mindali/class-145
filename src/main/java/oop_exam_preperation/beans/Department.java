@@ -53,4 +53,22 @@ public class Department {
                 "\n, employee=" + Arrays.toString(employee) +
                 '}';
     }
+
+    public double getDepartmentAvgSalary(){
+        double returnResult=0.0;
+        for (Employee item:employee){
+            returnResult+=item.getSalary().getAmount();
+        }
+        returnResult+=manager.getSalary().getAmount();
+        return returnResult/(employee.length+1);
+    }
+
+    public double getDepartmentAvgBonus(){
+        double returnResult=0.0;
+        for (Employee item:employee){
+            returnResult+=item.getSalary().getYearlyBouns();
+        }
+        returnResult+=manager.getSalary().getYearlyBouns();
+        return returnResult/(employee.length+1);
+    }
 }
