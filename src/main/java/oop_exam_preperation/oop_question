@@ -3,7 +3,7 @@ create random salaries employess managers and divisions for create full company
 
 names can be made by loop (but we will not do it)
 
-the program should wite the following information:
+the program should write the following information:
 1. average salary for entire company
 2. average salary for entire division
 3. average bonus for each division (print division name and salary)
