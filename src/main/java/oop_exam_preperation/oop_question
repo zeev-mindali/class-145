@@ -1,0 +1,33 @@
+create a class by the name of CompanyStatistics with main method.
+create random salaries employess managers and divisions for create full company
+
+names can be made by loop (but we will not do it)
+
+the program should wite the following information:
+1. average salary for entire company
+2. average salary for entire division
+3. average bonus for each division (print division name and salary)
+
+also write the following methods:
+1. number of workers without manager in age 20-30 and average salary
+2. number of workers without manager above 31 (included 31) and average salary
+3. average age of all workers
+4. average salary of all managers
+5. average bonus of all managers
+6. best employee -> worker with bouns of 9,000 and above
+
+tree of data:
+Salary:
+    amount:double (1000-50,000)
+    yearlyBonus:int (0-10,000)
+Person:
+    name:String
+    age:int (20-60)
+Employee->person:
+    salary:Salary
+Manager->employee:
+    managers salaries must be start from 25,000
+Department:
+    name:string ["Sales","Finance", "Administration", "Engineering", "Marketing"]
+    manger:Manager
+    employee:Employee[15]
