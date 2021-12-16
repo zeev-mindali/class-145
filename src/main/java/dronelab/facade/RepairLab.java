@@ -1,17 +1,34 @@
 package dronelab.facade;
 
 import dronelab.beans.Repair;
+import dronelab.sql.ConnectionPool;
+import lombok.SneakyThrows;
 
+import java.sql.Connection;
 import java.util.*;
 
 public class RepairLab {
     private Scanner input = new Scanner(System.in);
     private List<Repair> repairs;
 
+    @SneakyThrows
     public RepairLab() {
         repairs = new ArrayList<>();
-
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
         //threads
+
+
+        //connection
+        Connection myConnection = connectionPool.getConnection();
+        Connection myConnection2 = connectionPool.getConnection();
+        Connection myConnection3 = connectionPool.getConnection();
+
+
+
+        connectionPool.returnConnection(myConnection);
+        connectionPool.returnConnection(myConnection2);
+        connectionPool.returnConnection(myConnection3);
+
 
         repairMenu();
 
