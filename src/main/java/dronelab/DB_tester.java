@@ -24,12 +24,12 @@ public class DB_tester {
         repair.setSn("TalKita");
         //myRepairs.updateRepair(repair,oldSn);
 
-        for (Repair item: myRepairs.getRepairList()){
+        for (Repair item: myRepairs.getBySN("test")){
             System.out.println(item);
         }
 
 
-        myRepairs.deleteRecord("zeev1234");
+        //myRepairs.deleteRecord("zeev1234");
         System.out.println("me finished !!!!");
     }
 }

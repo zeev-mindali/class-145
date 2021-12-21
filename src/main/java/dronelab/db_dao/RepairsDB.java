@@ -25,6 +25,7 @@ public class RepairsDB implements Dao {
 
     private final String GET_ALL_REPAIRS = "SELECT * FROM `drone_lab`.`repairs`";
 
+    private final String GET_BY_SN = "SELECT * FROM `drone_lab`.`repairs` WHERE sn LIKE ?";
     private Connection connection;
     private boolean isOK;
 
@@ -52,6 +53,46 @@ public class RepairsDB implements Dao {
             ConnectionPool.getInstance().returnConnection(connection);
         }
         return isOK;
+    }
+
+    public List<Repair> getBySN(String sn){
+        List<Repair> repairs = new ArrayList<>();
+
+        try {
+            connection = ConnectionPool.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_SN);
+            preparedStatement.setString(1,"%"+sn+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                //   "(`memo`,`sn`,`entered`,`readyon`,`isimportant`,`ispoped`)" +
+                /*
+                Repair repair = new Repair(
+                        resultSet.getString("memo"),
+                        resultSet.getString("sn"),
+                        resultSet.getDate("entered"),
+                        resultSet.getDate("readyon"),
+                        resultSet.getBoolean("isimportant"),
+                        resultSet.getBoolean("ispoped")
+
+                )*/
+                Repair repair = Repair.builder()
+                        .entred( resultSet.getDate("entered"))
+                        .isImportent( resultSet.getBoolean("isimportant"))
+                        .memo( resultSet.getString("memo"))
+                        .readyOn(resultSet.getDate("readyon"))
+                        .sn( resultSet.getString("sn"))
+                        .poped(resultSet.getBoolean("ispoped"))
+                        .build();
+
+                repairs.add(repair);
+            }
+        } catch (InterruptedException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionPool.getInstance().returnConnection(connection);
+        }
+
+        return repairs;
     }
 
     @Override
