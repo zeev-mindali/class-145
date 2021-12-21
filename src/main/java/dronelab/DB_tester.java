@@ -13,7 +13,7 @@ public class DB_tester {
         //DataBaseManager.createTable();
 
         Repair repair = new Repair(Date.valueOf("2020-12-22"),Date.valueOf("2020-12-12")
-        ,"Tomer broke my life :)","kjh45kj64",true,false,
+        ,"Tomer broke my life :)","432",true,false,
                 "Tal Kipa",false);
 
         RepairsDB myRepairs = new RepairsDB();
