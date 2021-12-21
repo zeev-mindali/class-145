@@ -8,9 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class RepairsDB implements Dao {
     private final String ADD_REPAIR="INSERT INTO `drone_lab`.`repairs` " +
@@ -55,8 +53,8 @@ public class RepairsDB implements Dao {
         return isOK;
     }
 
-    public List<Repair> getBySN(String sn){
-        List<Repair> repairs = new ArrayList<>();
+    public Set<Repair> getBySN(String sn){
+        Set<Repair> repairs = new HashSet<>();
 
         try {
             connection = ConnectionPool.getInstance().getConnection();
