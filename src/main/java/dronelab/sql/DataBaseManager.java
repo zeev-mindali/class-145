@@ -15,7 +15,7 @@ public class DataBaseManager {
             "  `memo` VARCHAR(150) NOT NULL,\n" +
             "  `entered` DATE NOT NULL,\n" +
             "  `readyon` DATE NOT NULL,\n" +
-            "  `isImportant` TINYINT NOT NULL,\n" +
+            "  `isimportant` TINYINT NOT NULL,\n" +
             "  `ispoped` TINYINT NOT NULL,\n" +
             "  `sn` VARCHAR(45) NULL,\n" +
             "  PRIMARY KEY (`number`),\n" +

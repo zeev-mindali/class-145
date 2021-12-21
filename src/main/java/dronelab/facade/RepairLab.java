@@ -5,6 +5,7 @@ import dronelab.sql.ConnectionPool;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.*;
 
 public class RepairLab {
@@ -129,15 +130,15 @@ public class RepairLab {
         boolean isImportent = input.nextLine().charAt(0) == 'y' ;
 
         //handle ready on set the estimated date of fix to user input date
-        Calendar readyOn = Calendar.getInstance();
-        readyOn.set(Calendar.DAY_OF_MONTH,day);
-        readyOn.set(Calendar.MONTH,month);
-        readyOn.set(Calendar.YEAR,year);
-        readyOn.set(Calendar.HOUR,hour);
-        readyOn.set(Calendar.MINUTE,min);
+        Date readyOn = Date.valueOf("2022-12-12");
+//        readyOn.set(Calendar.DAY_OF_MONTH,day);
+//        readyOn.set(Calendar.MONTH,month);
+//        readyOn.set(Calendar.YEAR,year);
+//        readyOn.set(Calendar.HOUR,hour);
+//        readyOn.set(Calendar.MINUTE,min);
 
         Repair newRepair = Repair.builder()
-                .entred(Calendar.getInstance())
+                .entred(Date.valueOf("2022-12-12"))
                 .readyOn(readyOn)
                 .memo(memo)
                 .sn(sn)
