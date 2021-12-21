@@ -10,7 +10,7 @@ public class DataBaseManager {
     public static final String CREATE_DB = "CREATE DATABASE IF NOT EXISTS drone_lab";
     public static final String DROP_DB = "DROP DATABASE drone_lab";
     public static final int MAX_CONNECTION = 10;
-    public static final String CREATE_TABLE = "CREATE TABLE `drone_lab`.`repairs` (\n" +
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS `drone_lab`.`repairs` (\n" +
             "  `number` INT NOT NULL AUTO_INCREMENT,\n" +
             "  `memo` VARCHAR(150) NOT NULL,\n" +
             "  `entered` DATE NOT NULL,\n" +

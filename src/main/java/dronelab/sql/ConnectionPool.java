@@ -59,9 +59,11 @@ public class ConnectionPool {
         }
     }
 
-    public void returnConnection(Connection connection){
-        connections.push(connection);
-        connections.notify();
+    public void returnConnection(Connection connection) {
+        synchronized (connection) {
+            connections.push(connection);
+            //connections.notify();
+        }
     }
 
     public void closeAllConnection() throws InterruptedException {

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBUtils {
-    public static void runQuery(String sql){
+    public static void runQuery(String sql)  {
         //use connection from connection.sql to send queries to our db
         Connection connection = null;
 
