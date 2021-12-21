@@ -15,7 +15,7 @@ public class ConnectionPool {
         maximum connection = 10
      */
 
-    public static final int NUM_OF_CONNECTION=10;
+    private final int NUM_OF_CONNECTION=DataBaseManager.MAX_CONNECTION;
 
     /*
         Stack - lifo collection
@@ -29,16 +29,21 @@ public class ConnectionPool {
 
     private void openAllConnections() throws SQLException {
         for (int index=0;index<NUM_OF_CONNECTION;index++){
-            Connection connection = DriverManager.getConnection("mysql","root","12345678");
+            //Connection connection = DriverManager.getConnection("mysql","root","12345678");
+            Connection connection = DriverManager.getConnection(DataBaseManager.URL,DataBaseManager.USER_NAME,DataBaseManager.USER_PASS);
             connections.push(connection);
         }
     }
 
-    public static ConnectionPool getInstance() throws SQLException {
+    public static ConnectionPool getInstance()  {
         if (instance==null){
             synchronized (ConnectionPool.class) {
                 if (instance==null) {
-                    instance = new ConnectionPool();
+                    try {
+                        instance = new ConnectionPool();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
