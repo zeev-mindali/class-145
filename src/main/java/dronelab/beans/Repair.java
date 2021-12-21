@@ -8,7 +8,7 @@ import java.util.Calendar;
 @Data               //getters , setters, toString, equal , hashCode
 @AllArgsConstructor //All args c'tor
 @NoArgsConstructor  //Defualt c'tor
-@Builder
+@Builder            //using builder
 public class Repair {
     //fields
     private Date readyOn; //estimated time that the drone will be ready

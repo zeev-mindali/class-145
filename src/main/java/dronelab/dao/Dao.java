@@ -17,4 +17,10 @@ public interface Dao {
 
     //delete a repair
     boolean deleteRepair(Repair repair);
+
+    //update part of record by sn
+    boolean updateRepair(Repair repair,String oldSN);
+
+    //delete record by sn
+    void deleteRecord(String sn);
 }

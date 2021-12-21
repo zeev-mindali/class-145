@@ -7,7 +7,7 @@ import java.util.Stack;
 
 //we handle all the connection no more then 10.....
 public class ConnectionPool {
-    private static final int NUM_OF_CONS = 10;
+    private static final int NUM_OF_CONS = DataBaseManager.MAX_CONNECTION;
     private static ConnectionPool instance = null;
     private final Stack<Connection> connections = new Stack<>();
 
