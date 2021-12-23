@@ -11,18 +11,14 @@ public class RepairScannerThread implements Runnable {
     private List<Repair> repairList;
 
     //boolean to stop the work in normal way
-    boolean isRunning=true;
+    boolean isRunning = true;
 
-    //how many times VIP will apper
+    //how many times VIP will appear
     private final int VIP_TIMES = 3;
 
     //                                 REFERANCE
     public RepairScannerThread(List<Repair> repairList) {
         this.repairList = repairList;
-    }
-
-    public void stopScan(){
-        this.isRunning=false;
     }
 
     @Override
