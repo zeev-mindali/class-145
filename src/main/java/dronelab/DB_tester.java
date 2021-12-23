@@ -13,6 +13,7 @@ public class DB_tester {
         DataBaseManager.createDataBase();
         DataBaseManager.createTable();
 
+        /*
         Repair repair = new Repair(Date.valueOf("2020-12-30").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
                 Date.valueOf("2020-12-31").toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         ,"drone for new year","tomsh1234",true,false,
@@ -33,5 +34,7 @@ public class DB_tester {
 
         //myRepairs.deleteRecord("zeev1234");
         System.out.println("me finished !!!!");
+
+         */
     }
 }
