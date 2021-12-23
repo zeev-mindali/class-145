@@ -6,13 +6,15 @@ import dronelab.sql.DataBaseManager;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.ZoneId;
 
 public class DB_tester {
     public static void main(String[] args) throws SQLException {
         DataBaseManager.createDataBase();
         DataBaseManager.createTable();
 
-        Repair repair = new Repair(Date.valueOf("2020-12-30"),Date.valueOf("2020-12-31")
+        Repair repair = new Repair(Date.valueOf("2020-12-30").toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                Date.valueOf("2020-12-31").toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         ,"drone for new year","tomsh1234",true,false,
                 "Tal Kipa",false);
 

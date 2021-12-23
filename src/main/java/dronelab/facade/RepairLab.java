@@ -2,22 +2,32 @@ package dronelab.facade;
 
 import dronelab.beans.Repair;
 import dronelab.sql.ConnectionPool;
+import dronelab.threads.RepairScannerThread;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.time.ZoneId;
 import java.util.*;
 
 public class RepairLab {
     private Scanner input = new Scanner(System.in);
     private List<Repair> repairs;
+    private Runnable repairScanner;
+    private Thread repairThread;
 
     @SneakyThrows
     public RepairLab() {
         repairs = new ArrayList<>();
         ConnectionPool connectionPool = ConnectionPool.getInstance();
-        //threads
 
+        //threads
+        //create instance of runnable since RepairScannerThread is Runnable
+        repairScanner = new RepairScannerThread(repairs);
+        //create a true thread from runnable instance
+        repairThread = new Thread(repairScanner);
+        //start your engines !!!!!
+        repairThread.start();
 
         //connection
         Connection myConnection = connectionPool.getConnection();
@@ -57,6 +67,12 @@ public class RepairLab {
                     break;
                 case 4:
                     //todo: handle closing database connections
+                    try {
+                        ConnectionPool.getInstance().closeAllConnection();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    repairThread.interrupt();
                     System.out.println("Love to see you go, hate to see you leave");
                     break;
                 default:
@@ -138,8 +154,8 @@ public class RepairLab {
 //        readyOn.set(Calendar.MINUTE,min);
 
         Repair newRepair = Repair.builder()
-                .entred(Date.valueOf("2022-12-12"))
-                .readyOn(readyOn)
+                .entred(Date.valueOf("2022-12-12").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                .readyOn(readyOn.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                 .memo(memo)
                 .sn(sn)
                 .isImportent(isImportent)

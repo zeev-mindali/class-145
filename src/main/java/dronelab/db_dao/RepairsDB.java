@@ -5,9 +5,11 @@ import dronelab.dao.Dao;
 import dronelab.sql.ConnectionPool;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.ZoneId;
 import java.util.*;
 
 public class RepairsDB implements Dao {
@@ -37,8 +39,8 @@ public class RepairsDB implements Dao {
             //replace the ? with real data
             preparedStatement.setString(1, repair.getMemo());
             preparedStatement.setString(2, repair.getSn());
-            preparedStatement.setDate(3,repair.getEntred());
-            preparedStatement.setDate(4,repair.getReadyOn());
+            preparedStatement.setDate(3, Date.valueOf(repair.getEntred()));
+            preparedStatement.setDate(4,Date.valueOf(repair.getReadyOn()));
             preparedStatement.setBoolean(5,repair.isImportent());
             preparedStatement.setBoolean(6,repair.isPoped());
             //run the sql
@@ -74,10 +76,10 @@ public class RepairsDB implements Dao {
 
                 )*/
                 Repair repair = Repair.builder()
-                        .entred( resultSet.getDate("entered"))
+                        .entred( resultSet.getDate("entered").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                         .isImportent( resultSet.getBoolean("isimportant"))
                         .memo( resultSet.getString("memo"))
-                        .readyOn(resultSet.getDate("readyon"))
+                        .readyOn(resultSet.getDate("readyon").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                         .sn( resultSet.getString("sn"))
                         .poped(resultSet.getBoolean("ispoped"))
                         .build();
@@ -114,10 +116,10 @@ public class RepairsDB implements Dao {
 
                 )*/
                 Repair repair = Repair.builder()
-                        .entred( resultSet.getDate("entered"))
+                        .entred( resultSet.getDate("entered").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                         .isImportent( resultSet.getBoolean("isimportant"))
                         .memo( resultSet.getString("memo"))
-                        .readyOn(resultSet.getDate("readyon"))
+                        .readyOn(resultSet.getDate("readyon").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                         .sn( resultSet.getString("sn"))
                         .poped(resultSet.getBoolean("ispoped"))
                         .build();

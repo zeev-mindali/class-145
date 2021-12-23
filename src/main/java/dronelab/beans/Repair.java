@@ -3,6 +3,7 @@ package dronelab.beans;
 import lombok.*;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Data               //getters , setters, toString, equal , hashCode
@@ -11,8 +12,8 @@ import java.util.Calendar;
 @Builder            //using builder
 public class Repair {
     //fields
-    private Date readyOn; //estimated time that the drone will be ready
-    private Date entred; //when the drone was entered to the lab
+    private LocalDate readyOn; //estimated time that the drone will be ready
+    private LocalDate entred; //when the drone was entered to the lab
     private String memo; //some data about the drone
     private String sn; //Serial Number of the drone
     private boolean isImportent; //VIP person, tal edri
