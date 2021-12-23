@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -29,33 +30,23 @@ public class RepairLab {
         //start your engines !!!!!
         repairThread.start();
 
-        //connection
-        Connection myConnection = connectionPool.getConnection();
-        Connection myConnection2 = connectionPool.getConnection();
-        Connection myConnection3 = connectionPool.getConnection();
-
-
-
-        connectionPool.returnConnection(myConnection);
-        connectionPool.returnConnection(myConnection2);
-        connectionPool.returnConnection(myConnection3);
-
-
+        //show the menu
         repairMenu();
 
     }
 
     private void repairMenu() {
-        int choice=0; //1- create , 2-read (view) , 3 -delete ,4-quit
-        do{
+        int choice = 0; //1- create , 2-read (view) , 3 -delete, 4-update ,5-quit
+        do {
             System.out.println("Repair menu");
             System.out.println("===========");
             System.out.println("1 - Create new repair");
             System.out.println("2 - view all repairs");
             System.out.println("3 - delete repair");
-            System.out.println("4 - quit");
+            System.out.println("4 - update repair");
+            System.out.println("5 - quit");
             choice = input.nextInt();
-            switch (choice){
+            switch (choice) {
                 case 1:
                     handleNewRepair();
                     break;
@@ -63,10 +54,14 @@ public class RepairLab {
                     showRepairs();
                     break;
                 case 3:
-                deleteRepair();
+                    //delete repair by sn
+                    deleteRepair();
                     break;
                 case 4:
-                    //todo: handle closing database connections
+                    //update reapir by sn
+                    updateRepair();
+                    break;
+                case 5:
                     try {
                         ConnectionPool.getInstance().closeAllConnection();
                     } catch (InterruptedException e) {
@@ -78,7 +73,16 @@ public class RepairLab {
                 default:
                     System.out.println("Wrong choice");
             }
-        } while (choice != 4);
+        } while (choice != 5);
+    }
+
+    //get item by sn, and update in the DB
+    private void updateRepair() {
+        //todo: tal need to finish it at home :)
+        //todo: change the value if the user entered any input.
+        //drone memo (need to fix leg):need to fix leg and gimbel
+        //Repair repair = repairs.get(2);
+        //repair.setMemo(input.nextLine());
     }
 
     private void deleteRepair() {
@@ -87,21 +91,24 @@ public class RepairLab {
         deleteRepairBySN(sn);
     }
 
-    public void deleteRepairBySN(String sn){
-        for (Repair item:repairs){
-            if (item.getSn().equals(sn)){
+    //todo : also delete from data base
+    public void deleteRepairBySN(String sn) {
+        for (Repair item : repairs) {
+            if (item.getSn().equals(sn)) {
                 repairs.remove(item);
             }
         }
     }
 
-    public List<Repair> getRepairs(){
+    //show only repairs -> isReady = false
+    public List<Repair> getRepairs() {
         return this.repairs;
     }
 
+    //todo: get repair list form mysql database and show it on the screen
     private void showRepairs() {
 
-        for (Repair item:repairs){
+        for (Repair item : repairs) {
             System.out.println(item);
         }
 
@@ -122,9 +129,13 @@ public class RepairLab {
         */
     }
 
-    public void addNewRepair(Repair repair){
+    //todo: add new repair to mysql db
+    public void addNewRepair(Repair repair) {
         repairs.add(repair);
     }
+
+
+    //todo: get date and time from user and update the value
     private void handleNewRepair() {
         System.out.println("Create new repair\n===================");
         //enter date time for ready on (eta fix)
@@ -143,9 +154,10 @@ public class RepairLab {
         System.out.println("Enter s/n");
         String sn = input.nextLine();
         System.out.println("Set as importent (y/n)");
-        boolean isImportent = input.nextLine().charAt(0) == 'y' ;
+        boolean isImportent = input.nextLine().charAt(0) == 'y';
 
         //handle ready on set the estimated date of fix to user input date
+
         Date readyOn = Date.valueOf("2022-12-12");
 //        readyOn.set(Calendar.DAY_OF_MONTH,day);
 //        readyOn.set(Calendar.MONTH,month);
@@ -154,7 +166,7 @@ public class RepairLab {
 //        readyOn.set(Calendar.MINUTE,min);
 
         Repair newRepair = Repair.builder()
-                .entred(Date.valueOf("2022-12-12").toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
+                .entred(LocalDate.now())
                 .readyOn(readyOn.toInstant().atZone(ZoneId.systemDefault()).toLocalDate())
                 .memo(memo)
                 .sn(sn)

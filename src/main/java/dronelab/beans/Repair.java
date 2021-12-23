@@ -18,7 +18,6 @@ public class Repair {
     private String sn; //Serial Number of the drone
     private boolean isImportent; //VIP person, tal edri
     private boolean poped; //show message when the drone is ready.
-    private String repairPerson;
     private boolean isReady;
 
     @SneakyThrows
