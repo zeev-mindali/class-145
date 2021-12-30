@@ -30,7 +30,7 @@ public class DateUtils {
     }
 
     public static String getLocalDateTime(){
-        return "["+beaitofitDateTime(LocalDateTime.now())+"]";
+        return "["+beautifyDateTime(LocalDateTime.now())+"]";
     }
 
     public static void main(String[] args) {
