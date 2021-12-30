@@ -5,6 +5,7 @@ import streams.beans.Car;
 import streams.beans.Person;
 import streams.beans.PersonDTO;
 import streams.mock.MockData;
+import streams.util.TablePrinter;
 
 import java.io.IOException;
 import java.util.*;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
 public class Tester {
     public static void main(String[] args) throws IOException {
         //runPepoleFilter();
-        //runCarDemo();
+        runCarDemo();
         //streamDemo();
         //groupDemo();
         //howManyTimes();
@@ -27,7 +28,7 @@ public class Tester {
 
         //statistics();
         //ourDTO();
-        flatMap();
+        //flatMap();
     }
 
     private static void flatMap() {
@@ -289,7 +290,8 @@ public class Tester {
                 .filter(carColor)
                 .collect(Collectors.toList());
 
-        shiriCars.forEach(System.out::println);
+       // shiriCars.forEach(System.out::println);
+        TablePrinter.print(shiriCars);
 
 
     }

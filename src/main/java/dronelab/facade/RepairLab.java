@@ -17,6 +17,9 @@ public class RepairLab {
     private Runnable repairScanner;
     private Thread repairThread;
 
+    /**
+     * Constructor for init first data, create a connection pool and run the Threads
+     */
     @SneakyThrows
     public RepairLab() {
         repairs = new ArrayList<>();
@@ -35,6 +38,9 @@ public class RepairLab {
 
     }
 
+    /**
+     * Method for getting repair menu...
+     */
     private void repairMenu() {
         int choice = 0; //1- create , 2-read (view) , 3 -delete, 4-update ,5-quit
         do {
@@ -76,7 +82,9 @@ public class RepairLab {
         } while (choice != 5);
     }
 
-    //get item by sn, and update in the DB
+    /**
+     * get item by sn, and update in the DB
+     */
     private void updateRepair() {
         //todo: tal need to finish it at home :)
         //todo: change the value if the user entered any input.
@@ -85,19 +93,28 @@ public class RepairLab {
         //repair.setMemo(input.nextLine());
     }
 
+    /**
+     * delete a repair
+     */
     private void deleteRepair() {
         System.out.println("Please enter a S/N to delete");
         String sn = input.nextLine();
         deleteRepairBySN(sn);
     }
 
-    //todo : also delete from data base
-    public void deleteRepairBySN(String sn) {
+
+    /**
+     *
+     * @param sn Serial number of drone
+     * @return stam string
+     */
+    public String deleteRepairBySN(String sn) {
         for (Repair item : repairs) {
             if (item.getSn().equals(sn)) {
                 repairs.remove(item);
             }
         }
+        return "OK";
     }
 
     //show only repairs -> isReady = false
@@ -174,5 +191,14 @@ public class RepairLab {
                 .build();
         repairs.add(newRepair);
 
+    }
+
+    /**
+     * @param age age of victim
+     * @param moto moto before he dies
+     * @return alon moto
+     */
+    private String alonCanDoIt(int age, String moto){
+        return "Mess with the best, and die like the rest";
     }
 }

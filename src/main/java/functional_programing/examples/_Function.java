@@ -5,11 +5,9 @@ import java.util.function.Function;
 
 public class _Function {
     public static void main(String[] args) {
-        //נדב של אתמול
         int increment = incrementByOne(1);
         System.out.println(""+increment);
 
-        //נדב של היום
         //Function takes 1 argument and produces 1 result
         Function<Integer,Integer> incrementByOneFunction = number -> number+1;
         Function<Integer,Integer> multiplyByTen = number -> number*10;
