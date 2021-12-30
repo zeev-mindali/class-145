@@ -22,7 +22,7 @@ public class DateUtils {
                 localDate.getDayOfMonth(),localDate.getMonthValue(),localDate.getYear());
     }
 
-    public static String beaitofitDateTime(LocalDateTime localDate){
+    public static String beautifyDateTime(LocalDateTime localDate){
         return String.format("%02d/%02d/%04d %02d:%02d:%02d",
                 localDate.getDayOfMonth(),localDate.getMonthValue(),localDate.getYear(),
                 localDate.getHour(),localDate.getMinute(),localDate.getSecond()
