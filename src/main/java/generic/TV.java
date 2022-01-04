@@ -20,4 +20,9 @@ public class TV implements Noiseable{
     public void makeSound() {
         System.out.println("Min irshalim el kutz");
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

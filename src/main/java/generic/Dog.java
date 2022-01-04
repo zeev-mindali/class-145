@@ -10,4 +10,9 @@ public class Dog extends Animal implements Noiseable{
     public void makeSound() {
         System.out.println("Hoooooo Hoooooooo");
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
