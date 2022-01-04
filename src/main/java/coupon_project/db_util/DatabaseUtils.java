@@ -49,6 +49,7 @@ public class DatabaseUtils {
 
             });
             statement.execute();
+
         } catch (SQLException err) {
             System.out.println(err.getMessage());
         } finally {
