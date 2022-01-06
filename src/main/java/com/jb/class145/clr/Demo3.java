@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
+//@Component
 public class Demo3 implements CommandLineRunner {
     @Autowired
     ApplicationContext ctx;
