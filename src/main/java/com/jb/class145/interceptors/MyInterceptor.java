@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class MyInterceptor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        //System.out.println(beanName);
         if (bean instanceof MyNumber && beanName.equals("myNumber")) {
             MyNumber myNumber = (MyNumber) bean;
             int x = myNumber.getX();
