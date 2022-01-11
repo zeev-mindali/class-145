@@ -16,11 +16,12 @@ public class TeacherConfiguration {
         return zeev;
     }
 
+    /*
     @Bean
     @Qualifier("teacherAsi")
     public Teacher teacherAsi(){
         Teacher asi = new Teacher("Asi","054-725-6017");
         return asi;
     }
-
+    */
 }
