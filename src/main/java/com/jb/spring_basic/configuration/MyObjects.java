@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Scope;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class MyObjects {
     @Autowired
     ApplicationContext ctx;

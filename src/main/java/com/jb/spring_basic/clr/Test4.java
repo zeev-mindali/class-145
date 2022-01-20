@@ -31,11 +31,12 @@ public class Test4 implements CommandLineRunner {
         //List<NormalCat> cats = new ArrayList<>(); //NormalCat->Component
         //NormalCat normalCat = ctx.getBean(NormalCat.class);
         List<Cat> dbCats = catRepo.findAll();  //Cat->Entity
+        cats.clear();
         for (Cat cat : dbCats) {
             normalCat.addCat(cat);
             cats.add(normalCat);
         }
-        cats.add(ctx.getBean("myDefaultCat",NormalCat.class));
+        //cats.add(ctx.getBean("myDefaultCat",NormalCat.class));
         cats.forEach(System.out::println);
     }
 }
