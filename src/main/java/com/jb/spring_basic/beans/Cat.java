@@ -9,33 +9,34 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity //JPA->JAVAX->instance for the database
 //@Component -> instance->MEMORY
 @Table(
-        name="cat", //change table name....
+        name = "cat", //change table name....
         //index
         indexes = {
-            @Index(columnList = "name"),
-            @Index(columnList = "weight")
+                @Index(columnList = "name"),
+                @Index(columnList = "weight")
         }
 )
 
-public class Cat{
+public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
 
-    @Column(nullable = false,length = 40)
+    @Column(nullable = false, length = 40)
     //show bumper banner
     private String name;
 
     @Column(nullable = false)
     private float weight;
 
-    @OneToMany (cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Singular
     private List<Toy> toys;
 

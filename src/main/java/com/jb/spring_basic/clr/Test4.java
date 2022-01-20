@@ -19,20 +19,23 @@ public class Test4 implements CommandLineRunner {
     ApplicationContext ctx;
     @Autowired
     CatRepo catRepo;
-    private Object List;
     @Autowired
-    private List<NormalCat> cats;
+    List<NormalCat> cats;
     @Autowired
-    private NormalCat normalCat;
+    NormalCat normalCat;
 
     @Override
     public void run(String... args) throws Exception {
-        List<Cat> dbCats = catRepo.findAll();
-        //List<NormalCat> cats = ctx.getBean(List<NormalCat>);
+        //POJO
+        //NormalCat normalCat = new NormalCat();
+        //List<NormalCat> cats = new ArrayList<>(); //NormalCat->Component
+        //NormalCat normalCat = ctx.getBean(NormalCat.class);
+        List<Cat> dbCats = catRepo.findAll();  //Cat->Entity
         for (Cat cat : dbCats) {
             normalCat.addCat(cat);
             cats.add(normalCat);
         }
+        cats.add(ctx.getBean("myDefaultCat",NormalCat.class));
         cats.forEach(System.out::println);
     }
 }

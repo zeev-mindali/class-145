@@ -1,4 +1,4 @@
-package com.jb.spring_basic;
+package com.jb.spring_basic.interceptors;
 
 import com.jb.spring_basic.beans.NormalCat;
 import com.jb.spring_basic.util.Art;
