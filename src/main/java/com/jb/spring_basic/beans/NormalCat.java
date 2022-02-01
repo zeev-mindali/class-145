@@ -23,7 +23,7 @@ public class NormalCat {
     private float weight;
     private List<Toy> toyList;
 
-    @CatBanner
+   // @CatBanner
     public void addCat(Cat cat){
         this.id=cat.getId();
         this.name=cat.getName();

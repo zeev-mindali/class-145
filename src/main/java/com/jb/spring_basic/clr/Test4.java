@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Component
+//@Component
 public class Test4 implements CommandLineRunner {
     @Autowired
     ApplicationContext ctx;
