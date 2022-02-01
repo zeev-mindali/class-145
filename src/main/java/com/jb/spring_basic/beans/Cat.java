@@ -27,7 +27,6 @@ public class Cat{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     @Column(nullable = false,length = 40)
     //show bumper banner
     private String name;

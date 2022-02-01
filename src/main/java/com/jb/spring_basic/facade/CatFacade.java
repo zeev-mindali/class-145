@@ -1,6 +1,7 @@
 package com.jb.spring_basic.facade;
 
 import com.jb.spring_basic.beans.Cat;
+import com.jb.spring_basic.exceptions.CatNotFoundException;
 import com.jb.spring_basic.repositories.CatRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,10 @@ public class CatFacade {
         catRepo.save(cat);
     }
 
-    public void deleteCat(int id) {
+    public void deleteCat(int id) throws CatNotFoundException {
+        if (catRepo.findById(id).isEmpty()){
+            throw new CatNotFoundException();
+        }
         catRepo.deleteById(id);
     }
 

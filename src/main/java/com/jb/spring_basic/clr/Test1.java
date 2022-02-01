@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//@Component
+@Component
 @Order(1)
 public class Test1 implements CommandLineRunner {
     @Autowired
