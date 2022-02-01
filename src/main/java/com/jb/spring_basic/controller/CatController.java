@@ -1,6 +1,7 @@
 package com.jb.spring_basic.controller;
 
 import com.jb.spring_basic.beans.Cat;
+import com.jb.spring_basic.exceptions.BadSecurityRequestException;
 import com.jb.spring_basic.exceptions.CatNotFoundException;
 import com.jb.spring_basic.facade.CatFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,9 @@ public class CatController {
     //do not use it, bad bad bad code......
     @GetMapping("addGet/{name}/{weight}") //http://localhost:8080/cats/addGet/Itzik/72.5
     @ResponseStatus(HttpStatus.CREATED)
-    public void addGetCat(@PathVariable String name, @PathVariable float weight) {
-        catFacade.addCat(new Cat(name, weight, null));
+    public void addGetCat(@PathVariable String name, @PathVariable float weight) throws BadSecurityRequestException {
+        throw new BadSecurityRequestException();
+        //catFacade.addCat(new Cat(name, weight, null));
     }
 
     //find a cat by id
