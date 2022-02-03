@@ -1,8 +1,11 @@
 package com.jb.spring_basic.controller;
 
+import com.jb.spring_basic.auth.JWT;
 import com.jb.spring_basic.beans.Cat;
+import com.jb.spring_basic.beans.UserDetails;
 import com.jb.spring_basic.exceptions.BadSecurityRequestException;
 import com.jb.spring_basic.exceptions.CatNotFoundException;
+import com.jb.spring_basic.exceptions.InvalidUserException;
 import com.jb.spring_basic.facade.CatFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,9 +18,21 @@ public class CatController {
     @Autowired
     CatFacade catFacade;
 
+    @Autowired
+    JWT jwt;
+
     @GetMapping("all") //rest->http://localhost:8080/cats/all
-    public ResponseEntity<?> getAllCats() {
-        return new ResponseEntity<>(catFacade.getCats(), HttpStatus.OK);
+    public ResponseEntity<?> getAllCats(@RequestHeader(name = "Authorization") String token) throws InvalidUserException {
+        try {
+            UserDetails user = new UserDetails("admin@admin.com", "12345", "Admin");
+            if (jwt.validateToken(token, user)) {
+                return new ResponseEntity<>(catFacade.getCats(), HttpStatus.OK);
+            } else {
+                throw new InvalidUserException();
+            }
+        } catch (Exception err) {
+            throw new InvalidUserException();
+        }
     }
 
     //do not use it, bad bad bad code......

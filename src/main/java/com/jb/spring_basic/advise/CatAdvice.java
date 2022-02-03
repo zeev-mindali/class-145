@@ -2,6 +2,7 @@ package com.jb.spring_basic.advise;
 
 import com.jb.spring_basic.exceptions.BadSecurityRequestException;
 import com.jb.spring_basic.exceptions.CatNotFoundException;
+import com.jb.spring_basic.exceptions.InvalidUserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,5 +24,11 @@ public class CatAdvice {
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public ErrorDetail handleSecurity(Exception err){
         return new ErrorDetail("Security Alert",err.getMessage());
+    }
+
+    @ExceptionHandler(value = {InvalidUserException.class})
+    @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
+    public ErrorDetail invalidUserMessage(Exception err){
+        return new ErrorDetail("Invalid user",err.getMessage());
     }
 }
