@@ -35,6 +35,11 @@ public class CatController {
         }
     }
 
+    @GetMapping("cats") //rest->http://localhost:8080/cats/all
+    public ResponseEntity<?> myCats() throws InvalidUserException {
+        return new ResponseEntity<>(catFacade.getCats(), HttpStatus.OK);
+    }
+
     //do not use it, bad bad bad code......
     @GetMapping("addGet/{name}/{weight}") //http://localhost:8080/cats/addGet/Itzik/72.5
     @ResponseStatus(HttpStatus.CREATED)
