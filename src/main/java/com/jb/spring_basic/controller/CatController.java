@@ -10,10 +10,13 @@ import com.jb.spring_basic.facade.CatFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("cats")  //rest->http://localhost:8080/cats
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class CatController {
     @Autowired
     CatFacade catFacade;
@@ -21,7 +24,7 @@ public class CatController {
     @Autowired
     JWT jwt;
 
-    @GetMapping("all") //rest->http://localhost:8080/cats/all
+    @GetMapping("all") //rest->http://localhost:8080/cats/cats
     public ResponseEntity<?> getAllCats(@RequestHeader(name = "Authorization") String token) throws InvalidUserException {
         try {
             UserDetails user = new UserDetails("admin@admin.com", "12345", "Admin");
@@ -35,7 +38,7 @@ public class CatController {
         }
     }
 
-    @GetMapping("cats") //rest->http://localhost:8080/cats/all
+    @GetMapping("cats") //rest->http://localhost:8080/cats
     public ResponseEntity<?> myCats() throws InvalidUserException {
         return new ResponseEntity<>(catFacade.getCats(), HttpStatus.OK);
     }
@@ -55,18 +58,21 @@ public class CatController {
     }
 
     @PostMapping("newCat")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void addCat(@RequestBody Cat cat) {
         catFacade.addCat(new Cat(cat.getName(), cat.getWeight(), null));
     }
 
     @DeleteMapping("deleteCat/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SUPPORT'")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteCat(@PathVariable int id) throws CatNotFoundException {
         catFacade.deleteCat(id);
     }
 
     @PutMapping("update")
+    @PreAuthorize("hashAuthority('company:write')")
     @ResponseStatus(HttpStatus.OK)
     public void updateCat(@RequestBody Cat cat) {
         catFacade.updateCat(cat);
