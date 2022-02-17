@@ -27,7 +27,7 @@ public class CatController {
     @GetMapping("all") //rest->http://localhost:8080/cats/cats
     public ResponseEntity<?> getAllCats(@RequestHeader(name = "Authorization") String token) throws InvalidUserException {
         try {
-            UserDetails user = new UserDetails("admin@admin.com", "12345", "Admin");
+            UserDetails user = new UserDetails("admin@admin.com", "12345", "Admin",0);
             if (jwt.validateToken(token, user)) {
                 return new ResponseEntity<>(catFacade.getCats(), HttpStatus.OK);
             } else {

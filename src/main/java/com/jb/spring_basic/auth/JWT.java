@@ -81,6 +81,7 @@ public class JWT {
         return (userMail.equals(user.getUserName()) &&
                 !isTokenExpired(token));
     }
+    /*
     public static void main(String[] args) {
         JWT jwt = new JWT();
         UserDetails user = new UserDetails("mindalizeev@gmail.com", "123456", "King of the world!!!");
@@ -92,5 +93,5 @@ public class JWT {
         System.out.println(jwt.extractAllClamies(token));
         System.out.println("user name:"+jwt.extractUserEmail(token));
     }
-
+*/
 }

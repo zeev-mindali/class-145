@@ -9,4 +9,6 @@ public class UserDetails {
     private String userName;
     private String userPass;
     private String role;
+    private int id; //0-admin, companyId/CustomerId
+
 }

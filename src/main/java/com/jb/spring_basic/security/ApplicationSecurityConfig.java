@@ -1,12 +1,15 @@
 package com.jb.spring_basic.security;
 
 
+import com.jb.spring_basic.jwt.JwtTokenVerifier;
+import com.jb.spring_basic.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,24 +36,36 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .csrf().disable() //todo: we will talk about CSRF later
+//                .authorizeRequests()
+//                .antMatchers("/","index","/css/*","/js/*","/media/*","/img/*").permitAll()
+//                .antMatchers("/cats/**").hasAnyRole(ApplicationUserRole.ADMIN.name()
+//                 , ApplicationUserRole.SUPPORT.name()) //only admin will can login
+//                //.antMatchers("/cats/**").hasRole(ApplicationUserRole.SUPPORT.name())
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                //.httpBasic();
+//                .formLogin()
+//                .loginPage("/login").permitAll()
+//                .defaultSuccessUrl("/mainpage",true)
+//                .and()
+//                .rememberMe()    //defaults to 2 weeks instead of 30 minutes
+//                .tokenValiditySeconds((int) TimeUnit.MINUTES.toSeconds(30))
+//                .key("class-145"); //create our own key
+
         http
-                .csrf().disable() //todo: we will talk about CSRF later
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+                .addFilterAfter(new JwtTokenVerifier(),JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/","index","/css/*","/js/*","/media/*","/img/*").permitAll()
-                .antMatchers("/cats/**").hasAnyRole(ApplicationUserRole.ADMIN.name()
-                 , ApplicationUserRole.SUPPORT.name()) //only admin will can login
-                //.antMatchers("/cats/**").hasRole(ApplicationUserRole.SUPPORT.name())
+                .antMatchers("/cat/**").hasRole(ApplicationUserRole.ADMIN.name())
                 .anyRequest()
-                .authenticated()
-                .and()
-                //.httpBasic();
-                .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/mainpage",true)
-                .and()
-                .rememberMe()    //defaults to 2 weeks instead of 30 minutes
-                .tokenValiditySeconds((int) TimeUnit.MINUTES.toSeconds(30))
-                .key("class-145"); //create our own key
+                .authenticated();
     }
 
     @Override
