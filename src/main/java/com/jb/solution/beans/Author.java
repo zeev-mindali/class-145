@@ -22,6 +22,11 @@ public class Author {
 
     private float weight;
 
+    //how we will save the data
+    @Enumerated(EnumType.STRING)     //will write the string itself
+    //@Enumerated(EnumType.ORDINAL)  //will write the number
+    private AuthorLevel authorLevel;
+
     @Singular
     @OneToMany(cascade = CascadeType.ALL)
     List<Books> books;
@@ -40,5 +45,9 @@ public class Author {
 
     public float getWeight() {
         return weight;
+    }
+
+    public AuthorLevel getAuthorLevel() {
+        return authorLevel;
     }
 }
