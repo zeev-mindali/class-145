@@ -25,6 +25,7 @@ public class Author {
     //how we will save the data
     @Enumerated(EnumType.STRING)     //will write the string itself
     //@Enumerated(EnumType.ORDINAL)  //will write the number
+    @Column(name = "level")
     private AuthorLevel authorLevel;
 
     @Singular
