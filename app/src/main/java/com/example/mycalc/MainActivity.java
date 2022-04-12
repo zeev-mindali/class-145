@@ -11,9 +11,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView result;
-    private RelativeLayout n1,n2,n3;
-    private Double resHold;
-    private char opr;
+    private StringBuilder phoneNumber;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,134 +25,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setPointer() {
         result = findViewById(R.id.result);
-        //result.setText("1234567890.00");
-         /*
-        n1 = findViewById(R.id.n1);
-        n2 = findViewById(R.id.n2);
-        n3 = findViewById(R.id.n3);
-
-        n1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double res = Double.parseDouble(result.getText().toString());
-                res*=10;
-                res+=1;
-                result.setText(String.valueOf(res));
-            }
-        });
-        n2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double res = Double.parseDouble(result.getText().toString());
-                res*=10;
-                res+=2;
-                result.setText(String.valueOf(res));
-            }
-        });
-        n3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double res = Double.parseDouble(result.getText().toString());
-                res*=10;
-                res+=3;
-                result.setText(String.valueOf(res));
-            }
-        });
-        */
+        phoneNumber = new StringBuilder();
     }
 
     @Override
     public void onClick(View v) {
-        double res = Double.parseDouble(result.getText().toString());
+        String res = result.getText().toString();
         switch (v.getId()){
             case R.id.n0:
-                res*=10;
+                phoneNumber.append("0");
                 break;
             case R.id.n1:
-                res*=10;
-                res+=1;
+                phoneNumber.append("1");
                 break;
             case R.id.n2:
-                res*=10;
-                res+=2;
+                phoneNumber.append("2");
                 break;
             case R.id.n3:
-                res*=10;
-                res+=3;
+                phoneNumber.append("3");
                 break;
             case R.id.n4:
-                res*=10;
-                res+=4;
+                phoneNumber.append("4");
                 break;
             case R.id.n5:
-                res*=10;
-                res+=5;
+                phoneNumber.append("5");
                 break;
             case R.id.n6:
-                res*=10;
-                res+=6;
+                phoneNumber.append("6");
                 break;
             case R.id.n7:
-                res*=10;
-                res+=7;
+                phoneNumber.append("7");
                 break;
             case R.id.n8:
-                res*=10;
-                res+=8;
+                phoneNumber.append("8");
                 break;
             case R.id.n9:
-                res*=10;
-                res+=9;
+                phoneNumber.append("9");
                 break;
-            case R.id.clr:
-                res=0;
+            case R.id.astrix:
+                phoneNumber.append("*");
                 break;
-            case R.id.plusminus:
-                res*=-1;
+            case R.id.hashtag:
+                phoneNumber.append("#");
                 break;
-            case R.id.plus:
-                resHold=res;
-                opr='+';
-                res=0;
-                break;
-            case R.id.minus:
-                resHold=res;
-                opr='-';
-                res=0;
+            case R.id.dial:
+                Toast.makeText(this, "dialing "+phoneNumber.toString(), Toast.LENGTH_LONG).show();
+                phoneNumber = new StringBuilder();
+                result.setText("");
                 break;
 
-            case R.id.multiply:
-                resHold=res;
-                opr='*';
-                res=0;
+            case R.id.hangup:
+                Toast.makeText(this, "hanging up, bye bye", Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.divide:
-                resHold=res;
-                opr='/';
-                res=0;
-                break;
-
-            case R.id.equal:
-                switch (opr){
-                    case '+':
-                        resHold+=res;
-                        break;
-                    case '-':
-                        resHold-=res;
-                        break;
-                    case '*':
-                        resHold*=res;
-                        break;
-                    case '/':
-                        resHold/=res;
-                        break;
-                    default:
-                        break;
-                }
-                res=resHold;
-                break;
         }
-        result.setText(String.valueOf(res));
+        result.setText(phoneNumber.toString());
     }
 }

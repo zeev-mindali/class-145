@@ -12,7 +12,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="0"
+                android:text=""
                 android:textSize="50sp"
                 android:gravity="right|center_vertical"
                 android:id="@+id/result"
@@ -77,23 +77,7 @@
 
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/plus"
-            android:onClick="onClick"
-            android:background="@drawable/btn_back">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="+"
-                android:textColor="#fff"
-                android:textSize="50sp" />
-
-        </RelativeLayout>
 
     </LinearLayout>
     <LinearLayout
@@ -152,23 +136,7 @@
 
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/minus"
-            android:onClick="onClick"
-            android:background="@drawable/btn_back">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="-"
-                android:textColor="#fff"
-                android:textSize="50sp" />
-
-        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -226,23 +194,7 @@
 
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/multiply"
-            android:onClick="onClick"
-            android:background="@drawable/btn_back">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="*"
-                android:textColor="#fff"
-                android:textSize="50sp" />
-
-        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -253,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/clr"
+            android:id="@+id/hashtag"
             android:onClick="onClick"
             android:background="@drawable/btn_back">
 
@@ -261,8 +213,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="C"
-                android:textColor="#f00"
+                android:text="#"
+                android:textColor="#fff"
                 android:textSize="50sp" />
 
         </RelativeLayout>
@@ -287,7 +239,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/plusminus"
+            android:id="@+id/astrix"
             android:onClick="onClick"
             android:background="@drawable/btn_back">
 
@@ -295,45 +247,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="+/-"
+                android:text="*"
                 android:textColor="#fff"
                 android:textSize="50sp" />
 
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/divide"
-            android:onClick="onClick"
-            android:background="@drawable/btn_back">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="/"
-                android:textColor="#fff"
-                android:textSize="50sp" />
-
-        </RelativeLayout>
     </LinearLayout>
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:id="@+id/equal"
         android:gravity="center"
         android:onClick="onClick"
-        android:background="@drawable/btn_back">
+        android:background="#fff"
+        android:orientation="horizontal"
+        >
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="="
-            android:textColor="#fff"
-            android:textSize="80sp" />
-    </RelativeLayout>
+            android:src="@drawable/dial"
+            android:id="@+id/dial"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hang_up"
+            android:id="@+id/hangup"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            />
+
+    </LinearLayout>
 </LinearLayout>
